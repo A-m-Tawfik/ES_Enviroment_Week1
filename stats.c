@@ -37,23 +37,12 @@ void main(void)
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
-    unsigned char Median;
-	unsigned char Mean;
-	unsigned char Min;
-	unsigned char Max;
+    
 
 	print_array(test, SIZE);
 
-	Median = find_median(test, SIZE);
-	Mean   = find_mean(test, SIZE);
-	Min    = find_minimum(test, SIZE);
-	Max    = find_maximum(test, SIZE);
-
-	printf("Median=%d\n",Median);
-	printf("Mean=%d\n",Mean);
-	printf("Min=%d\n",Min);
-	printf("Max=%d\n",Max);
-
+	print_statistics(test, SIZE);
+	
 	print_array(test, SIZE);
 
 }
@@ -89,13 +78,15 @@ unsigned char find_median(unsigned char* arr, unsigned int size)
 }
 unsigned char find_mean(unsigned char* arr, unsigned int size)
 {
-	unsigned char MeanValue=0;
+	unsigned int Sum=0;
 	unsigned char LoopIndex3;
+	unsigned char MeanValue;
 
 	for(LoopIndex3=0;LoopIndex3<size;LoopIndex3++)
 	{
-		MeanValue+=arr[LoopIndex3];
+		Sum+=arr[LoopIndex3];
 	}
+	MeanValue=(Sum/size);
 
 	return MeanValue;
 }
@@ -153,4 +144,24 @@ void sort_array(unsigned char* arr, unsigned int size)
 			flag=0;
 		}
 	}
+}
+
+void print_statistics(unsigned char* arr, unsigned int size)
+{
+	unsigned char Median;
+	unsigned char Mean;
+	unsigned char Min;
+	unsigned char Max;
+
+	Median = find_median(arr, size);
+	Mean   = find_mean(arr, size);
+	Min    = find_minimum(arr, size);
+	Max    = find_maximum(arr, size);
+
+	printf("Median=%d\n",Median);
+	printf("Mean=%d\n",Mean);
+	printf("Min=%d\n",Min);
+	printf("Max=%d\n",Max);
+
+
 }

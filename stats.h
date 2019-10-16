@@ -80,6 +80,14 @@ void print_array(unsigned char* arr, unsigned int size);
  */
  void sort_array(unsigned char* arr, unsigned int size);
 
-
+/**
+ * @brief <Print Mean , Median , Max and Min of givien array>
+ *
+ * @param <arr> <Pointer to unsigned char to pass the array base address>
+ * @param <size> <array size>
+ *
+ * @return <void>
+ */
+void print_statistics(unsigned char* arr, unsigned int size);
 
 #endif /* __STATS_H__ */
