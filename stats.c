@@ -37,6 +37,24 @@ void main(void)
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
+    unsigned char Median;
+	unsigned char Mean;
+	unsigned char Min;
+	unsigned char Max;
+
+	print_array(test, SIZE);
+
+	Median = find_median(test, SIZE);
+	Mean   = find_mean(test, SIZE);
+	Min    = find_minimum(test, SIZE);
+	Max    = find_maximum(test, SIZE);
+
+	printf("Median=%d\n",Median);
+	printf("Mean=%d\n",Mean);
+	printf("Min=%d\n",Min);
+	printf("Max=%d\n",Max);
+
+	print_array(test, SIZE);
 
 }
 
@@ -45,29 +63,94 @@ void main(void)
 
 void print_array(unsigned char* arr, unsigned int size)
 {
-
+	unsigned char LoopIndex;
+	for(LoopIndex=0; LoopIndex<size; LoopIndex++)
+	{
+		printf("arr[%d]=%d\n",LoopIndex,arr[LoopIndex]);
+	}
 } 
 
 unsigned char find_median(unsigned char* arr, unsigned int size)
 {
+	unsigned char MedianValue;
 
+	sort_array(arr, size);
 
+	if(size%2 != 0)  									/* Check if the array size is odd */ 
+	{
+		MedianValue=arr[(size/2)+1];
+	}
+	else      											/* if the array size is even */
+	{
+		MedianValue=(arr[size/2]+arr[(size/2)+1])/2;
+	}
+
+	return MedianValue;	
+}
 unsigned char find_mean(unsigned char* arr, unsigned int size)
 {
+	unsigned char MeanValue=0;
+	unsigned char LoopIndex3;
 
+	for(LoopIndex3=0;LoopIndex3<size;LoopIndex3++)
+	{
+		MeanValue+=arr[LoopIndex3];
+	}
+
+	return MeanValue;
 }
 
 unsigned char find_maximum(unsigned char* arr, unsigned int size)
 {
+	unsigned char MaxValue;
 
+	sort_array(arr, size);
+
+	MaxValue= arr[0];
+
+	return MaxValue;
 } 
 
 unsigned char find_minimum(unsigned char* arr, unsigned int size)
 {
+	unsigned char MinValue;
 
+	sort_array(arr, size);
+
+	MinValue= arr[size-1];
+
+	return MinValue;
 } 
 
 void sort_array(unsigned char* arr, unsigned int size)
 {
-
+	unsigned char LoopIndex1;
+	unsigned char LoopIndex2;
+	unsigned char temp;
+	unsigned char flag=0;
+	for(LoopIndex1=0;LoopIndex1<size;LoopIndex1++)
+	{
+		for(LoopIndex2=0;LoopIndex2<(size-1-LoopIndex1);LoopIndex2++)
+		{
+			if(arr[LoopIndex2]<arr[LoopIndex2+1])
+			{
+				flag=1;
+				temp=arr[LoopIndex2];
+				arr[LoopIndex2]=arr[LoopIndex2+1];
+				arr[LoopIndex2+1]=temp;
+			}
+			else
+			{
+				/*Do Nothing*/
+			}
+		}
+		if(flag==0)
+		{
+			break;
+		}
+		else
+		{
+			flag=0;
+		}
+	}
 }
